@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>PAPERMANIA</title>
+<!--link rel="shortcut icon" href="favicon.png" type="image/x-icon" /-->
+<style>
+body {
+
+
+
+
+	margin: auto;
+	display: table;
+	position: relative;
+	border:0px;
+	top: 0px;
+	left: 0px;
+	padding: 0; margin: 0;
+	background-image: url('assets/index.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center center; 
+}
+</style>
+<title>BubX</title>
+<meta http-equiv="X-UA-Compatible" content="chrome=1, IE=9">
+<meta name="format-detection" content="telephone=no">
+<meta name="HandheldFriendly" content="true" />
+<meta name="robots" content="noindex,nofollow" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-title" content="Phaser App">
+<meta name="msapplication-tap-highlight" content="no" />
+<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+<!--meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /-->
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height"
+/>
+<script src="cordova.js"></script>
+<script src="phaser.js"></script>
+
+<script src="src/util.js"></script>
+<script src="src/parameter.js"></script>
+<script src="src/tween.js"></script>
+<script src="src/config.js"></script>
+<script src="src/opponent.js"></script>
+<script src="src/object.js"></script>
+<script src="src/particles.js"></script>
+<script src="src/button.js"></script>
+<script src="src/text.js"></script>
+<script src="src/effect.js"></script>
+<script src="src/f.js"></script>
+<script src="src/camera.js"></script>
+<script src="src/create.js"></script>
+<script src="src/start.js"></script>
+<script src="src/main.js"></script>
+</head>
+
+<body>
+</body>
+<script>
+	document.addEventListener("deviceready", function () {
+			setTimeout(function () {
+					navigator.splashscreen.hide();
+					}, 5000, false);
+			});
+(function () {
+ //start with a game with these resolution : 1280-1920
+ // personnaly i find it offers the best graphics for all devices but may slow some devices.
+ // after put a safe zone 
+ //1280+200 > 1480
+ //1920 +350 > 2270 (350 is 200*1.5 > ratio from 1920/1280)
+ var safe_zone_width = 1480;
+ var safe_zone_height = 2270;
+ var width = window.innerWidth;//* pixelRatio,
+ var height = window.innerHeight;//* pixelRatio;
+ var lw, lh;
+ if (height > width) {
+ lw = height;
+ lh = width;
+ } else {
+ lw = width;
+ lh = height;
+ }
+ var aspect_ratio_device = lw / lh;
+
+ var aspect_ratio_safe_zone = safe_zone_height / safe_zone_width;
+ var extra_height = 0, extra_width = 0;
+ if (aspect_ratio_safe_zone < aspect_ratio_device) {
+	 // have to add game pixels horizontally in order to fill the device screen
+	 extra_height = aspect_ratio_device * safe_zone_width - safe_zone_height;
+ } else {
+	 // have to add game pixels vertically
+	 extra_width = safe_zone_height / aspect_ratio_device - safe_zone_width;
+ }
+ game = new Phaser.Game(safe_zone_width + extra_width, safe_zone_height + extra_height, Phaser.CANVAS, 'game');
+ //play_sound=window.game.add.audio('game_over');
+ //game = new Phaser.Game( 1280,1920, Phaser.CANVAS, 'game');
+ game.state.add('boot', boot);
+ game.state.add('preloader', preloader);
+ game.state.add('game_first_screen', game_first_screen);
+ game.state.add('rank_screen', rank_screen);
+ game.state.add('game_main', game_main);
+ game.state.add('how_to', how_to);
+ game.state.start('boot');
+})();
+</script>
+
+</html>
