@@ -158,9 +158,9 @@ function createScene() {
 	// la position de la camera doit se faire après controls.update()
 	//camera.lookAt(new THREE.Vector3(0, 800, 0));
 	//camera.lookAt(scene.position)
-	camera.position.z = 100;
-	camera.position.y = 100;
-	camera.position.x = -300;
+	camera.position.z = 150;
+	camera.position.y = 750;
+	camera.position.x = -450;
 
 	// pour que la camera fasse une rotation toute seule
 	controls.autoRotate=false
@@ -390,6 +390,79 @@ var Sheep = function(){
 	// yeux du mouton
 	var geom_yeux = new THREE.BoxGeometry(2,2,1,1,1,1);
 	var mat_yeux = new THREE.MeshPhongMaterial({color:Colors.white, flatShading:THREE.FlatShading});
+	var yeux=[]
+	yeux[0]= new THREE.Mesh(geom_yeux, mat_yeux);
+	yeux[0].position.set(12,18,1);
+	yeux[0].castShadow = true;
+	yeux[0].receiveShadow = true;
+	this.mesh.add(yeux[0]);
+	//
+	yeux[1]= new THREE.Mesh(geom_yeux, mat_yeux);
+	yeux[1].position.set(12,18,-1);
+	yeux[1].castShadow = true;
+	yeux[1].receiveShadow = true;
+	this.mesh.add(yeux[1]);
+
+
+
+	this.mesh.position.set(0,-10,0)
+	this.mesh.castShadow = true;
+	this.mesh.receiveShadow = true;
+
+};
+var Wolf = function(){
+	this.mesh = new THREE.Object3D();
+	this.mesh.name = "wolf";
+
+	// corps du loup
+	var geombody = new THREE.BoxGeometry(15,15,15,1,1,1);
+	var matbody = new THREE.MeshPhongMaterial({color:Colors.brownDark, flatShading:THREE.FlatShading});
+	var body = new THREE.Mesh(geombody, matbody);
+	body.position.set(0,20,0);
+	body.castShadow = true;
+	body.receiveShadow = true;
+	this.mesh.add(body);
+	//
+
+	//museau
+	var geommuseau = new THREE.ConeGeometry(5,8,5,1,1,1);
+	var matmuseau = new THREE.MeshPhongMaterial({color:Colors.brownDark, flatShading:THREE.FlatShading});
+	var museau = new THREE.Mesh(geommuseau, matmuseau);
+	museau.position.set(10,20,0);
+	museau.castShadow = true;
+	museau.receiveShadow = true;
+	this.mesh.add(museau);
+	//
+
+	// pieds du wolf
+	var geompied = new THREE.BoxGeometry(12,2,12,1,1,1);
+	var matpied = new THREE.MeshPhongMaterial({color:Colors.brownDark, flatShading:THREE.FlatShading});
+	var pied = new THREE.Mesh(geompied, matpied);
+	pied.position.set(0,11,0);
+	pied.castShadow = true;
+	pied.receiveShadow = true;
+	this.mesh.add(pied);
+	//
+
+	// oreilles du mouton
+	var geom_oreille = new THREE.BoxGeometry(4,7,1,1,1,1);
+	var mat_oreille = new THREE.MeshPhongMaterial({color:Colors.brownDark, flatShading:THREE.FlatShading});
+	var oreille=[]
+	oreille[0]= new THREE.Mesh(geom_oreille, mat_oreille);
+	oreille[0].position.set(10,19,3);
+	oreille[0].castShadow = true;
+	oreille[0].receiveShadow = true;
+	this.mesh.add(oreille[0]);
+	//
+	oreille[1]= new THREE.Mesh(geom_oreille, mat_oreille);
+	oreille[1].position.set(10,19,-3);
+	oreille[1].castShadow = true;
+	oreille[1].receiveShadow = true;
+	this.mesh.add(oreille[1]);
+
+	// yeux du mouton
+	var geom_yeux = new THREE.BoxGeometry(2,2,1,1,1,1);
+	var mat_yeux = new THREE.MeshPhongMaterial({color:Colors.red, flatShading:THREE.FlatShading});
 	var yeux=[]
 	yeux[0]= new THREE.Mesh(geom_yeux, mat_yeux);
 	yeux[0].position.set(12,18,1);
@@ -1033,7 +1106,7 @@ CoinsHolder.prototype.rotateCoins = function(){
 
 
 // 3D Models
-var sea,airplane,sheep,moon,stars,tree,forest,littleSphere;
+var sea,airplane,sheep,moon,stars,tree,forest,littleSphere,wolf;
 
 function createLittleSphere(){
 	littleSphere = new LittleSphere()
@@ -1054,6 +1127,14 @@ function createSheep(){
 	sheep.mesh.position.set(-120,270,0)
 	//sheep.mesh.position.set(0,100,0)
 	sheep.mesh.rotation.z=Math.PI*.05 
+}
+function createWolf(){
+	wolf=[]
+	for (var i = 0; i < 3; i++){
+		wolf[i]= new Wolf();
+		scene.add(wolf[i].mesh);
+		wolf[i].mesh.position.set(0,0,0);
+	}
 }
 function createTree(){
 	tree=[]
@@ -1338,6 +1419,7 @@ function init(event){
 	createStars();
 	createPlane();
 	createSheep();
+	createWolf();
 	createSky();
 	createCoins();
 	createEnnemies();

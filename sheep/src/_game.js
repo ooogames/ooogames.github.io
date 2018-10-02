@@ -117,13 +117,13 @@ function createScene() {
 		nearPlane,
 		farPlane
 	);
-	scene.fog = new THREE.Fog(0xf7d9aa, 100,950);
-	camera.position.x = 0;
+	camera.position.x = -1800;
 	camera.position.z = 200;
 	//camera.position.y = game.planeDefaultHeight;
-	camera.position.y = 200;
-	camera.lookAt(new THREE.Vector3(0, 800, 0));
+	camera.position.y = 9900;
+	camera.lookAt(new THREE.Vector3(-1800, 300, 0));
 
+	scene.fog = new THREE.Fog(0xf7d9aa, 100,950);
 
 	renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 	renderer.setSize(WIDTH, HEIGHT);
