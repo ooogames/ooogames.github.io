@@ -710,7 +710,7 @@ Sky = function(){
 		var s = 1+Math.random()*2;
 		c.mesh.scale.set(s,s,s);
 		this.mesh.add(c.mesh);
-		sea.mesh.add(c.mesh)
+		littleSphere.mesh.add(c.mesh)
 	}
 }
 
@@ -774,6 +774,15 @@ Sea.prototype.moveWaves = function (){
 	}
 }
 
+LittleSphere = function(){
+	var geom = new THREE.SphereBufferGeometry(50,1,1);
+	var mat = new THREE.MeshPhongMaterial({
+		color:Colors.white,
+		wireframe: true,
+	});
+	this.mesh = new THREE.Mesh(geom, mat);
+	this.mesh.name = "littleSphere";
+}
 
 
 Cloud = function(){
@@ -1024,7 +1033,12 @@ CoinsHolder.prototype.rotateCoins = function(){
 
 
 // 3D Models
-var sea,airplane,sheep,moon,stars,tree,forest;
+var sea,airplane,sheep,moon,stars,tree,forest,littleSphere;
+
+function createLittleSphere(){
+	littleSphere = new LittleSphere()
+	scene.add(littleSphere.mesh);
+}
 
 
 function createPlane(){
@@ -1037,7 +1051,7 @@ function createPlane(){
 function createSheep(){
 	sheep = new Sheep()
 	scene.add(sheep.mesh);
-	sheep.mesh.position.set(-120,-35,0)
+	sheep.mesh.position.set(-120,270,0)
 	//sheep.mesh.position.set(0,100,0)
 	sheep.mesh.rotation.z=Math.PI*.05 
 }
@@ -1184,6 +1198,7 @@ function loop(){
 
 	airplane.propeller.rotation.x +=.2 + game.planeSpeed * deltaTime*.005;
 	sea.mesh.rotation.z += game.speed*deltaTime;//*game.seaRotationSpeed;
+	littleSphere.mesh.rotation.z += game.speed*deltaTime*.2;//*game.seaRotationSpeed;
 
 	//faire tourner les arbres comme la terre
 	for (var i = 0; i < game.nTree; i++){
@@ -1316,6 +1331,7 @@ function init(event){
 	//createSea doit être avant tree car reference à la sphere
 	createSea();
 	createTree()
+	createLittleSphere();
 	//createForest()
 	createLights();
 	createMoon();
