@@ -1,3 +1,4 @@
+
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -12,17 +13,27 @@
 <link rel="stylesheet" type="text/css" href="css/demo.css" />
 <link rel="stylesheet" type="text/css" href="css/game.css" />
 <script type="text/javascript" src="src/TweenMax.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/96/three.min.js"></script>
-<script src="http://threejs.org/examples/js/controls/OrbitControls.js"></script>
+<script type="text/javascript" src="src/three.min.js"></script>
+<script type="text/javascript" src="src/TrackballControls.js" /></script>
 <script type="text/javascript" src="src/game.js" /></script>
 <!--[if IE]>
 		  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-7243260-2']);
+_gaq.push(['_trackPageview']);
+(function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+ })();
+</script>
 </head>
 <body>
 <div class="game-holder" id="gameHolder">
 	<div class="header">
-		<h1><span>the</span>Sheep and Wolfs</h1>
+		<h1><span>the</span>Aviator</h1>
 		<h2>fly it to the end</h2>
 		<div class="score" id="score">
 			<div class="score__content" id="level">
@@ -56,5 +67,15 @@
 	<a class="demo-link" href="part1.html">Part 1</a>
 	<a class="demo-link" href="part2.html">Part 2</a>
 </nav>
+<div class="partisan">
+	<svg class="partisan__bg" viewBox="0 0 500 188" preserveAspectRatio="none" width="100%" height="100%" aria-hidden="true">
+		<polygon points="0 154 123.39 0 235.78 14.79 365.6 28.9 436.24 114.93 500 188 0 188 0 154" fill="#bed730"/>
+		<polygon points="0 188 108.84 18.17 347.91 26.79 500 188 365.6 28.9 123.39 0 0 154 0 188" fill="#dde465"/>
+	</svg>
+	<a class="partisan__link" href="https://goo.gl/oECseP" rel="nofollow">
+		<img class="partisan__img" src="img/Partisan_Bushel.png" alt="Bushel: Easily manage all your Apple devices at work"/>
+		<h3 class="partisan__title">Bushel: Easily manage all your Apple devices at work</h3>
+	</a>
+</div>
 </body>
 </html>

@@ -587,39 +587,6 @@ Tree.prototype.rotate = function(){
 }
 
 //placer les abres sur la sphère
-var Forest = function(){
-	this.mesh = new THREE.Object3D();
-	//nombre d'arbres dans la scene
-	this.nTree = 30
-	this.tree = [];
-	for(var i=0; i<this.nTree; i++){
-		var c = new Tree() 
-		this.tree.push(c)
-		sea.add(c)
-		//	// random angle pour distribuer sur la sphère
-		//	let rx=Math.random() * Math.PI * 2;
-		//	let ry=Math.random() * Math.PI;
-
-		//	//random scale
-		//	let rs=Math.random() * 1;
-		//	c.mesh.scale.set(rs,rs,rs) 
-		//	c.mesh.position.setFromSphericalCoords(game.seaRadius + 0.01, ry, rx);
-		//	c.mesh.lookAt(sea.mesh.position);
-		//	c.mesh.position.y=c.mesh.position.y-300
-		//	this.mesh.add(c.mesh)
-		//	//scene.add(tree[i].mesh);
-	}
-}
-Forest.prototype.moveTree = function(){
-	for(var i=0; i<this.nTree; i++){
-		var c = this.tree[i];
-		c.rotate();
-	}
-	//this.mesh.rotation.x += game.speed*deltaTime;
-}
-
-
-
 var AirPlane = function(){
 	this.mesh = new THREE.Object3D();
 	this.mesh.name = "airPlane";
@@ -1106,7 +1073,7 @@ CoinsHolder.prototype.rotateCoins = function(){
 
 
 // 3D Models
-var sea,airplane,sheep,moon,stars,tree,forest,littleSphere,wolf;
+var sea,airplane,sheep,moon,stars,tree,littleSphere,wolf;
 
 function createLittleSphere(){
 	littleSphere = new LittleSphere()
@@ -1162,10 +1129,6 @@ function createTree(){
 	//tree.mesh.position.set(0, 0, 0.25 + game.seaRadius)
 	//tree.mesh.translate(0, 0, 0.25 + game.seaRadius);
 	//tree.place()
-}
-function createForest(){
-	forest = new Forest
-	scene.add(forest.mesh)
 }
 
 
@@ -1295,8 +1258,6 @@ function loop(){
 	//ennemiesHolder.rotateEnnemies();
 
 
-	//pour animer la forêt pour qu'elle tourne avec la sphère
-	//forest.moveTree()
 	sky.moveClouds();
 	//sea.moveWaves();
 	renderer.render(scene, camera);
@@ -1413,7 +1374,6 @@ function init(event){
 	createSea();
 	createTree()
 	createLittleSphere();
-	//createForest()
 	createLights();
 	createMoon();
 	createStars();
