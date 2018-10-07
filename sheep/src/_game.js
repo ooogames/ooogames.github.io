@@ -862,6 +862,10 @@ function loop(){
 
 	if (game.status=="playing"){
 
+
+
+
+
 		// Add energy coins every 100m;
 		if (Math.floor(game.distance)%game.distanceForCoinsSpawn == 0 && Math.floor(game.distance) > game.coinLastSpawn){
 			game.coinLastSpawn = Math.floor(game.distance);

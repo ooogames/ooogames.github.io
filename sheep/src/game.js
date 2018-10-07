@@ -37,6 +37,9 @@ var oldTime = new Date().getTime();
 var ennemiesPool = [];
 var particlesPool = [];
 var particlesInUse = [];
+//collide
+var staticCube;
+var collidableMeshList = [];
 
 function resetGame(){
 	game = {speed:0,
@@ -98,7 +101,7 @@ function resetGame(){
 		distanceForEnnemiesSpawn:50,
 
 		status : "playing",
-		nTree : 60,
+		nTree : 50,
 	};
 	fieldLevel.innerHTML = Math.floor(game.level);
 }
@@ -112,6 +115,7 @@ var scene,
 	controls;
 
 //SCREEN & MOUSE VARIABLES
+var clock = new THREE.Clock();
 
 var HEIGHT, WIDTH,
 	mousePos = { x: 0, y: 0 };
@@ -177,6 +181,13 @@ function createScene() {
 	//controls.enableZoom = false;
 	//controls.noZoom = false;
 	//controls.noPan = true;
+
+
+
+
+
+
+
 }
 
 // MOUSE AND SCREEN EVENTS
@@ -409,6 +420,10 @@ var Sheep = function(){
 	this.mesh.castShadow = true;
 	this.mesh.receiveShadow = true;
 
+
+	//collision
+	collidableMeshList.push(this.mesh)
+
 };
 var Wolf = function(){
 	this.mesh = new THREE.Object3D();
@@ -568,22 +583,9 @@ var Tree = function(){
 	tronc.add(arbre)
 	//this.mesh.add(arbre);
 
+	//collision
+	collidableMeshList.push(tronc)
 
-	//this.mesh.castShadow = true;
-	//this.mesh.receiveShadow = true;
-
-}
-Tree.prototype.rotate = function(){
-	//	var l = this.mesh.children.length;
-	//	for(var i=0; i<l; i++){
-	//		var m = this.mesh.children[i];
-	//		//m.rotation.z+= Math.random()*.005*(i+1);
-	//		//m.rotation.y+= Math.random()*.002*(i+1);
-	//
-	//
-	//
-	//		m.rotation.x+= game.speed;
-	//	}
 }
 
 //placer les abres sur la sphère
@@ -1182,6 +1184,50 @@ function createParticles(){
 	scene.add(particlesHolder.mesh)
 }
 
+//variables pour la collision
+var vertex = new THREE.Vector3();
+var direction = new THREE.Vector3();
+//collision
+function collide(obj){
+
+	var delta = clock.getDelta(); // seconds.
+
+	// collision detection:
+	//   determines if any of the rays from the cube's origin to each vertex
+	//		intersects any face of a mesh in the array of target meshes
+	//   for increased collision accuracy, add more vertices to the cube;
+	//		for example, new THREE.CubeGeometry( 64, 64, 64, 8, 8, 8, wireMaterial )
+	//   HOWEVER: when the origin of the ray is within the target mesh, collisions do not occur
+	var originPoint = obj.mesh.position;
+
+	sea.mesh.rotation.z += 0.01
+
+	for (var vertexIndex = 0; vertexIndex < obj.mesh.children[0].geometry.vertices.length; vertexIndex++)
+	{
+		var vertices = obj.mesh.children[0].geometry.vertices;
+		vertex.copy( vertices[ vertexIndex ] );
+
+		vertex.applyMatrix4( obj.mesh.matrixWorld );
+		const length = direction.subVectors( vertex, originPoint ).length()+800;
+		console.log("length :",length);
+		direction.divideScalar( length );
+
+		var ray = new THREE.Raycaster( originPoint, direction );
+		var collisionResults = ray.intersectObjects( collidableMeshList );
+		if ( collisionResults.length > 0 && collisionResults[0].distance < length ) 
+
+			sea.mesh.rotation.z -= 0.01
+	}	
+
+}
+
+function keyboard(){
+
+
+
+
+}
+
 function loop(){
 
 	newTime = new Date().getTime();
@@ -1241,7 +1287,9 @@ function loop(){
 
 
 	airplane.propeller.rotation.x +=.2 + game.planeSpeed * deltaTime*.005;
-	sea.mesh.rotation.z += game.speed*deltaTime;//*game.seaRotationSpeed;
+
+	//pour animer la rotation de la sphère
+	//sea.mesh.rotation.z += game.speed*deltaTime;//*game.seaRotationSpeed;
 	littleSphere.mesh.rotation.z += game.speed*deltaTime*.2;//*game.seaRotationSpeed;
 
 	//faire tourner les arbres comme la terre
@@ -1250,13 +1298,15 @@ function loop(){
 	}
 
 
-	if ( sea.mesh.rotation.z > 2*Math.PI)  sea.mesh.rotation.z -= 2*Math.PI;
+	//if ( sea.mesh.rotation.z > 2*Math.PI)  sea.mesh.rotation.z -= 2*Math.PI;
 
 	ambientLight.intensity += (.5 - ambientLight.intensity)*deltaTime*0.005;
 
 	coinsHolder.rotateCoins();
 	//ennemiesHolder.rotateEnnemies();
 
+	//collision
+	collide(sheep)
 
 	sky.moveClouds();
 	//sea.moveWaves();
@@ -1359,6 +1409,7 @@ function normalize(v,vmin,vmax,tmin, tmax){
 var fieldDistance, energyBar, replayMessage, fieldLevel, levelCircle;
 
 function init(event){
+
 
 	// UI
 
