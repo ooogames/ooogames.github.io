@@ -279,7 +279,7 @@ var game_main = {
 			}
 		}
 		// pour éviter de mettre ceci dans update et gagner de la ressource
-		f.loop(40,f.pseudo_update)
+		f.loop(15,f.pseudo_update)
 
 
 
