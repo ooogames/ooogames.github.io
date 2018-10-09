@@ -117,6 +117,7 @@ var preloader = {
 
 var game_first_screen = {
 	create: function () {
+		game.time.desiredFps = 30;
 		music=game.add.audio('music');
 		// si nomusic est true la musique ne se joue pas
 		!d.nomusic && music.play()
@@ -152,6 +153,7 @@ var game_first_screen = {
 
 var rank_screen = {
 	create: function () {
+		game.time.desiredFps = 30;
 		game.physics.arcade.gravity.y = 1000;
 		this.game.stage.backgroundColor = '#ffe063';
 		pop=game.add.audio('pop');
@@ -226,6 +228,7 @@ var rank_screen = {
 
 var game_main = {
 	create: function () {
+		game.time.desiredFps = 30;
 		music.stop()
 		grow.flag=false
 		this.game.stage.backgroundColor = '#ffe063';
