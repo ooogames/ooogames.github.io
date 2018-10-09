@@ -53,7 +53,6 @@ var preloader = {
 		this.game.load.image("background_top", "assets/background_top.png");
 		this.game.load.image("progress", "assets/progress.png");
 		this.game.load.image("gray_filter", "assets/gray_filter.png");
-		this.game.load.image("paper_pink", "assets/paper_pink.png");
 		this.game.load.image("paper", "assets/paper.png");
 		this.game.load.image("shadow", "assets/shadow.png");
 		this.game.load.image("paper_winner", "assets/paper_winner.png");
@@ -117,6 +116,7 @@ var preloader = {
 
 var game_first_screen = {
 	create: function () {
+		game.time.advancedTiming = true;
 		game.time.desiredFps = 30;
 		music=game.add.audio('music');
 		// si nomusic est true la musique ne se joue pas
@@ -153,6 +153,7 @@ var game_first_screen = {
 
 var rank_screen = {
 	create: function () {
+		game.time.advancedTiming = true;
 		game.time.desiredFps = 30;
 		game.physics.arcade.gravity.y = 1000;
 		this.game.stage.backgroundColor = '#ffe063';
@@ -228,6 +229,7 @@ var rank_screen = {
 
 var game_main = {
 	create: function () {
+		game.time.advancedTiming = true;
 		game.time.desiredFps = 30;
 		music.stop()
 		grow.flag=false
@@ -332,8 +334,8 @@ var game_main = {
 	render: function () {
 		//f.debug(o.paper[0])
 		//f.debug(o.paper[0].fil)
-		f.debug(o.sensor)
-		f.debug(o.pre_sensor)
+		//f.debug(o.sensor)
+		//f.debug(o.pre_sensor)
 
 	},
 }
