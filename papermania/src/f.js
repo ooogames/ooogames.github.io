@@ -170,6 +170,7 @@ f.stop_opponent_on_the_last = (obj) => {
 		if (obj.flag == false && o.paper[0].gameover == false) {
 			//wait(()=>{d.could_anim_score[0]=true},t.delay_to_anim_score)
 			// fait apparaître flash lumineux blanc 
+			co("flash")
 			_a(ap.flash_blanc[0])	
 			co("stop_opponent_on_the_last :");
 			f.show_points(o.paper[0])

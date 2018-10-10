@@ -829,7 +829,7 @@ si et seulement si le nombre de transition est atteint
 		//normalement va de pair avec le timer de recherche d'un enemi
 		i: o.searching_opponent.number-1,
 	}
-	_a(o.text_searching_opponent_tw)
+	//_a(o.text_searching_opponent_tw)
 
 	o.pre_sensor = new _obj(o.pre_sensor_p)
 
