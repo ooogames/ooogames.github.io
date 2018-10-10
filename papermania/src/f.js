@@ -183,48 +183,22 @@ f.stop_opponent_on_the_last = (obj) => {
 
 //actions à réaliser lorsque longue pression
 f.actions_on_long_press=(obj)=>{
-
 	// fait apparaître flash lumineux blanc 
+	co(obj,"actions_on_long_press")
+	//son du click validant l'arrêt 
+	//joue le son de grossissement du pointer
+	grow.play()
 	_a(ap.flash_blanc[1])	
-
-
-
-
-
 	co("actions_on_long_press");
 	//montre le score pour le player, l'enemi a une autre logique voir last
-
-
-
-
-
-
 	f.show_points(obj)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	//enregistre le score
 	f.write("score_0", interface.points[0].text)
 	f.write("score_1", interface.points[1].text)
-	//son du click validant l'arrêt 
-	scroll.play()
 	obj.flag_test_duration = true // to lock the function
 	obj.flag_dont_move = true
-	// joue le son de grossissement
-	wait(()=>{grow.play()},250)
+	// joue le son de chute
+	wait(()=>{scroll.play()},250)
 }
 
 
@@ -311,24 +285,11 @@ f.test_distance=(numA,numB)=>{
 		f.show_button_restart()
 		f.show_looser(o.looser_tw[numB])
 		f.show_looser(o.looser_tw_text[numB])
-
-
-
-
-
-
-
 		wait(()=>{f.anim_heart_on_winner(numA)},t.show_heart)
 	}else{
 		f.show_button_restart()
 		f.show_looser(o.looser_tw[numA])
 		f.show_looser(o.looser_tw_text[numA])
-
-
-
-
-
-
 		wait(()=>{f.anim_heart_on_winner(numB)},t.show_heart)
 	}
 }
@@ -339,7 +300,9 @@ f.test_distance=(numA,numB)=>{
 -1. un joueur valide mais on ne sait pas encore l'etat de l'autre joueur
 -2. un joueur valide et l'autre a perdu donc le premier est gagnant
 -3. un joueur valide et l'autre aussi donc test de distance
+-4. un joueur valide et l'autre aussi mais égalité
 */
+
 f.test_behaviour = (obj) => {
 	if(obj.name == 0){
 		if(o.paper[1].flag == false && o.paper[1].flag_dont_move == false){
@@ -427,7 +390,6 @@ f.anim_heart_on_winner = (side)=>{
 		//anim la progression des points ici
 		for (var i = 0; i < 300; i++){
 			decimal = decimal + 1
-			co(decimal)
 			if(decimal < 300){
 				//f.loop(1,()=>{interface.progress[num].anim(decimal)})	
 			}

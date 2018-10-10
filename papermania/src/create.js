@@ -748,7 +748,9 @@ si et seulement si le nombre de transition est atteint
 			f.launch_animation_searching_opponent(p,n)
 		}
 	}
-	f.launch_animation_searching_opponent(ap.searching_opponent,o.searching_opponent.number)
+	//TODO : 
+	//à remettre
+	//f.launch_animation_searching_opponent(ap.searching_opponent,o.searching_opponent.number)
 
 
 

@@ -225,37 +225,42 @@ var rank_screen = {
 		f.collide(o.collision,stars)
 	},
 };
+function scale_assets_to_screen(){
+	o.background_main.scale.y = game.height/2270 
+	o.flash[0].scale.y = game.height/2270 
+	o.flash[1].scale.y = game.height/2270 
+	o.background_top.scale.y = game.height/2270 
+	o.background_top.scale.y = game.height/2270 
+	o.filter_gray.scale.y = game.height/2270 
+	o.looser[0].scale.y = game.height/2270 
+	o.looser[1].scale.y = game.height/2270 
+	o.pre_sensor.y = o.pre_sensor.y + game.height/2270
+	o.flash_blanc[0].scale.y = game.height/2270
+	o.flash_blanc[1].scale.y = game.height/2270
+}
 
+function create_sounds(game){
+	pop=game.add.audio('pop');
+	clic=game.add.audio('clic');
+	grow = game.add.audio("grow")
+	score = game.add.audio("score")
+}
 
 var game_main = {
 	create: function () {
+		music.stop()
 		game.time.advancedTiming = true;
 		game.time.desiredFps = 30;
-		music.stop()
 		grow.flag=false
 		this.game.stage.backgroundColor = '#ffe063';
-		pop=game.add.audio('pop');
-		clic=game.add.audio('clic');
-		grow = game.add.audio("grow")
 		scroll = game.add.audio("scroll")
 		scroll.flag =false
-		score = game.add.audio("score")
 		h=game.height
+		//scale the sprites to the screen
 		game.physics.arcade.gravity.y = 1000;
 		f.start_game()
-		o.background_main.scale.y = game.height/2270 
-		co(game.height)
-		o.flash[0].scale.y = game.height/2270 
-		o.flash[1].scale.y = game.height/2270 
-
-		o.background_top.scale.y = game.height/2270 
-		o.background_top.scale.y = game.height/2270 
-		o.filter_gray.scale.y = game.height/2270 
-		o.looser[0].scale.y = game.height/2270 
-		o.looser[1].scale.y = game.height/2270 
-		o.pre_sensor.y = o.pre_sensor.y + game.height/2270
-		o.flash_blanc[0].scale.y = game.height/2270
-		o.flash_blanc[1].scale.y = game.height/2270
+		scale_assets_to_screen()
+		create_sounds(game)
 		wait(() => { e.arrow(game) }, 3000)
 
 
