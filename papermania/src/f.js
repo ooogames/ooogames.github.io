@@ -405,10 +405,10 @@ f.anim_heart_on_winner = (side)=>{
 			game.add.tween(o.particle[i]).to({alpha:0},time*4,anim,true,delay);
 		}
 		score.play()
-		wait( ()=> {score.play()},250)
-		wait( ()=> {score.play()},500)
-		wait( ()=> {score.play()},750)
-		wait( ()=> {score.play()},1000)
+		//wait( ()=> {score.play()},250)
+		//wait( ()=> {score.play()},500)
+		//wait( ()=> {score.play()},750)
+		//wait( ()=> {score.play()},1000)
 		game.add.tween(interface.roll[num].scale).to({x:1.5,y:1.5},time,anim,true,delay,5,true);
 		game.add.tween(interface.points[num].scale).to({x:1.5,y:1.5},time,anim,true,delay,5,true);
 
