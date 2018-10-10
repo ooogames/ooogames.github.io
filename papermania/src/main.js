@@ -235,8 +235,11 @@ function scale_assets_to_screen(){
 	o.looser[0].scale.y = game.height/2270 
 	o.looser[1].scale.y = game.height/2270 
 	o.pre_sensor.y = o.pre_sensor.y + game.height/2270
-	o.flash_blanc[0].scale.y = game.height/2270
-	o.flash_blanc[1].scale.y = game.height/2270
+	//o.flash_blanc[0].scale.y = game.height/2270
+	o.flash_blanc[0].scale.y = game.height/391
+	o.flash_blanc[0].scale.x = game.width/320
+	o.flash_blanc[1].scale.y = game.height/391
+	o.flash_blanc[1].scale.x = game.width/320
 }
 
 function create_sounds(game){
