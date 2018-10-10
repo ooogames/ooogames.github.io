@@ -226,14 +226,17 @@ var rank_screen = {
 	},
 };
 function scale_assets_to_screen(){
-	o.background_main.scale.y = game.height/2270 
+	o.background_main.scale.x = game.width/320 
+	o.background_main.scale.y = game.height/491 
 	o.flash[0].scale.y = game.height/2270 
 	o.flash[1].scale.y = game.height/2270 
-	o.background_top.scale.y = game.height/2270 
-	o.background_top.scale.y = game.height/2270 
+	o.background_top.scale.x = game.width/320 
+	o.background_top.scale.y = game.height/491 
 	o.filter_gray.scale.y = game.height/2270 
-	o.looser[0].scale.y = game.height/2270 
-	o.looser[1].scale.y = game.height/2270 
+	o.looser[0].scale.x = game.width/320 
+	o.looser[0].scale.y = game.height/491 
+	o.looser[1].scale.x = game.width/320 
+	o.looser[1].scale.y = game.height/491 
 	o.pre_sensor.y = o.pre_sensor.y + game.height/2270
 	//o.flash_blanc[0].scale.y = game.height/2270
 	o.flash_blanc[0].scale.y = game.height/391
