@@ -48,6 +48,7 @@ var preloader = {
 		//this.load.setPreloadSprite(loadingBar);
 		//tuto
 		this.game.load.image("rank", "assets/rank.png");
+		this.game.load.image("roll_rank", "assets/roll_rank.png");
 		this.game.load.image("background_start", "assets/background_start.png");
 		this.game.load.image("background_main", "assets/background_main.png");
 		this.game.load.image("background_top", "assets/background_top.png");
@@ -174,25 +175,14 @@ var rank_screen = {
 
 		stars = [];
 
-		for (var i = 0; i < 1000; i++)
+		for (var i = 0; i < 500; i++)
 		{
-			//in op config
-			op.rolls={
-				//ici définir le type de roll en fonction de la collection du joueur
-				image: "roll_bondissant",
-				x: random(400,w),
-				y: random(0,h),
-				a: 1,
-				flag: true,
-				g: game,
-				physics:true,
-				gravity:true,
-				moves:true,
-				bounces : 8,
-			}
 
 			//o.rolls = new _obj(op.rolls)
-			o.rolls = game.add.sprite(random(50,w-50),random(400,h),'roll_bondissant') 
+			o.rolls = game.add.sprite(random(50,w-50),random(400,h),'roll_rank') 
+			o.rolls.scale.x=4
+			o.rolls.scale.y=4
+
 			game.physics.enable( [ o.rolls ], Phaser.Physics.ARCADE);
 
 			o.rolls.body.collideWorldBounds = true;
