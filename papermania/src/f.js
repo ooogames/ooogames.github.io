@@ -202,14 +202,6 @@ f.actions_on_long_press=(obj)=>{
 	wait(()=>{scroll.play()},250)
 }
 
-
-
-
-
-
-
-
-
 //grossit le pointer
 f.pointer_big=(obj,speed)=>{
 	if (obj.scale.x < 3) {
@@ -278,9 +270,10 @@ f.anim_pointer=(obj,anim)=>{
 f.show_button_restart=()=>{
 	if(d.show_button_restart == false){
 		d.show_button_restart = true	
-		clic.play()
+		wait(()=>{clic.play();interface.restart.visible=true}, t.show_heart+1000)
 
-		wait(()=>{interface.restart.visible=true}, t.show_heart+1000)
+		//f.write("score_0", interface.points[0].text)
+		//f.write("score_1", interface.points[1].text)
 	}
 }
 
@@ -342,10 +335,11 @@ f.test_behaviour = (obj) => {
 //animation des points => counter
 // vérifie si le score est inférieur à la valeur stockée dans create.js
 f.anim_score=(num)=>{
+
 	//converti le score en string
 	let condition = parseInt(o.score[num])+100
-	if(interface.points[num].text < condition){
-		interface.points[num].text = parseInt(interface.points[num].text) +1
+	if(interface.points[num].text <= condition){
+		interface.points[num].text = parseInt(interface.points[num].text) + 3
 	}
 }
 
@@ -368,7 +362,21 @@ f.anim_heart_on_winner = (side)=>{
 	let anim = Phaser.Easing.Linear.None
 	let anim2 =  Phaser.Easing.Bounce.Out
 
+	this.game.load.bitmapFont('name', 'fonts/name.png', 'fonts/name.fnt');
 
+	//in tp config
+	tp.score={
+		g: game,
+		x: w2 * 1.1,
+		y: h*.075,
+		message: "ready",
+		taille: 80,
+		police: 'police_red',
+		v:true,
+	}
+
+	//t.score = new _t(tp.score)
+	//t.score.alpha =.7
 
 
 
@@ -392,13 +400,6 @@ f.anim_heart_on_winner = (side)=>{
 
 	let decimal = 0
 	let anim_winner = (num)=>{
-		//anim la progression des points ici
-		for (var i = 0; i < 300; i++){
-			decimal = decimal + 1
-			if(decimal < 300){
-				//f.loop(1,()=>{interface.progress[num].anim(decimal)})	
-			}
-		}
 
 		for (var i = 0; i < o.particle.length; i++){
 			o.particle[i].x=o.paper[num].points.x;
@@ -409,10 +410,6 @@ f.anim_heart_on_winner = (side)=>{
 			game.add.tween(o.particle[i]).to({alpha:0},time*4,anim,true,delay);
 		}
 		score.play()
-		//wait( ()=> {score.play()},250)
-		//wait( ()=> {score.play()},500)
-		//wait( ()=> {score.play()},750)
-		//wait( ()=> {score.play()},1000)
 		game.add.tween(interface.roll[num].scale).to({x:1.5,y:1.5},time,anim,true,delay,5,true);
 		game.add.tween(interface.points[num].scale).to({x:1.5,y:1.5},time,anim,true,delay,5,true);
 
@@ -424,6 +421,7 @@ f.anim_heart_on_winner = (side)=>{
 			co("anim winner 0")
 			anim_winner(0)
 			wait( ()=> {d[0]=true},time)
+
 		}
 		if (side == 1){
 			co("anim winner 1")

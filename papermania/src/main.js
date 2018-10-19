@@ -264,7 +264,7 @@ var game_main = {
 		f.pseudo_update=()=>{
 			if(flag.start_game){
 				//anim le score en fonction du drapeau
-				d[0] &&	f.anim_score(0)
+				d[0] && f.anim_score(0)
 				d[1] && f.anim_score(1)
 
 				// pointer qui suit le mouvement
