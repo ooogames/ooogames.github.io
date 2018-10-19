@@ -239,6 +239,8 @@ f.create_main = () => {
 
 	//pour reseter les drapeaux au lancement du jeu
 	flag.heart =false
+	d.show_button_restart = false	
+
 	o.background_start_p = {
 		image: "background_start",
 		x: w2,

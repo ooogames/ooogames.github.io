@@ -73,6 +73,7 @@ var d={
 	},
 	0:false,
 	1:false,
+	show_button_restart:false,
 };
 
 

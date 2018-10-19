@@ -253,7 +253,7 @@ var game_main = {
 		scroll.flag =false
 		h=game.height
 		//scale the sprites to the screen
-		game.physics.arcade.gravity.y = 1000;
+		game.physics.arcade.gravity.y = 3000;
 		f.start_game()
 		scale_assets_to_screen()
 		create_sounds(game)

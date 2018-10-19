@@ -105,9 +105,9 @@ f.check_deep = (obj) => {
 		if(obj.name == 0){
 			f.lock(obj,()=>{_tr(o.looser_tw[0])})
 			f.lock(o.looser[0].text,()=>{_tr(o.looser_tw_text[0])})
-
 			o.paper[0].gameover=true
 		}else{
+			f.show_button_restart()
 			f.lock(obj,()=>{_tr(o.looser_tw[1])})
 			f.lock(o.looser[1].text,()=>{_tr(o.looser_tw_text[1])})
 		}
@@ -274,8 +274,14 @@ f.anim_pointer=(obj,anim)=>{
 
 //montre le button restart
 //doit apparaître après t.show_heart puisque qu'après anim_heart_on_winner
+// flag car elle peut se lancer plusieurs fois
 f.show_button_restart=()=>{
-	wait(()=>{interface.restart.visible=true}, t.show_heart+1000)
+	if(d.show_button_restart == false){
+		d.show_button_restart = true	
+		clic.play()
+
+		wait(()=>{interface.restart.visible=true}, t.show_heart+1000)
+	}
 }
 
 //test la distance numA=joueur numB=autre
