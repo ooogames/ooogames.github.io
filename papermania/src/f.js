@@ -421,12 +421,14 @@ f.anim_heart_on_winner = (side)=>{
 			co("anim winner 0")
 			anim_winner(0)
 			wait( ()=> {d[0]=true},time)
+			wait( ()=> {d[0]=false},time*5)
 
 		}
 		if (side == 1){
 			co("anim winner 1")
 			anim_winner(1)
 			wait( ()=> {d[1]=true},time)
+			wait( ()=> {d[1]=false},time*5)
 
 		}
 	}
