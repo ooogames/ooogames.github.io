@@ -194,8 +194,6 @@ f.actions_on_long_press=(obj)=>{
 	//montre le score pour le player, l'enemi a une autre logique voir last
 	f.show_points(obj)
 	//enregistre le score
-	f.write("score_0", interface.points[0].text)
-	f.write("score_1", interface.points[1].text)
 	obj.flag_test_duration = true // to lock the function
 	obj.flag_dont_move = true
 	// joue le son de chute
@@ -421,16 +419,18 @@ f.anim_heart_on_winner = (side)=>{
 			co("anim winner 0")
 			anim_winner(0)
 			wait( ()=> {d[0]=true},time)
-			wait( ()=> {d[0]=false},time*5)
+			wait( ()=> {d[0]=false},time*6)
 
 		}
 		if (side == 1){
 			co("anim winner 1")
 			anim_winner(1)
 			wait( ()=> {d[1]=true},time)
-			wait( ()=> {d[1]=false},time*5)
+			wait( ()=> {d[1]=false},time*6)
 
 		}
+		wait(()=>{f.write("score_0", interface.points[0].text)},time*6)
+		wait(()=>{f.write("score_1", interface.points[1].text)},time*6)
 	}
 
 
