@@ -176,21 +176,6 @@ f.create_game_first_screen = () => {
 	pp.heart.start()
 	pp.heart.loop()
 
-
-
-
-
-	//this.particle = game.add.emitter(this._x,this._y);
-	//this.particle.makeParticles("particle_character");
-	//this.particle.minParticleSpeed.setTo(-600,-600);
-	//this.particle.maxParticleSpeed.setTo(800,800);
-	//this.particle.setAlpha(0.5,0.2);
-	//this.particle.minParticleScale = 0.2;
-	//this.particle.maxParticleScale = 0.5;
-	//this.particle.minRotation = 0;
-	//this.particle.maxRotation = 0;
-	//this.particle.on=false;
-	//this.particle.start(true,3900,null,8);
 }
 //creer les papiers gagnés dans la collection
 f.create_rank=()=>{
@@ -217,19 +202,6 @@ f.create_rank=()=>{
 		g:game,
 	}
 	b.button_home = new _b(bp.button_home)
-
-
-	//	bp.button_next_screen={
-	//		callback: ()=>{game.state.start("game_main"),clic.play()},
-	//		image:"button_next_screen",
-	//		x: w*.86,
-	//		y: h*.92,
-	//		g:game,
-	//	},
-	//		//b.button_next_screen = new _b(bp.button_next_screen)
-
-
-
 }
 
 
@@ -887,7 +859,7 @@ si et seulement si le nombre de transition est atteint
 		width : 300,
 		heigth :30,
 		round : 10,
-		initial_value:100,
+		initial_value : f.open("progress_1") != null ? parseInt(f.open("progress_1")) : 0,
 	}
 
 	let random_name = random(0,name_opponent.length-1)
@@ -989,6 +961,21 @@ si et seulement si le nombre de transition est atteint
 	interface.puissance[0].scale.y = 0
 	//ici on spécifie la puissance de l'enemy
 	interface.roll[0].frame=3
+
+	//si local storage est nul on définit la valeur par défaut sinon on renseigne celle stockée pour la progression
+	//attention on doit spécifier parseInt sinon la valeur retournée est une string
+	f.specify_progress=(string,variable)=>{
+		variable = f.open(string) != null ? parseInt(f.open(string)) : 0
+		//ensuite on l'écrit
+		f.write(variable,string)
+	}
+	//appel des fonctions pour les deux joeurs
+	f.specify_progress("progress_0",progress_enemy)
+	//f.specify_progress("progress_1",progress_player)
+
+	progress_player = f.open("progress_1") != null ? parseInt(f.open("progress_1")) : 0
+	//ensuite on l'écrit
+	f.write(progress_player,"progress_1")
 
 
 	//définition des scores respectifs

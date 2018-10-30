@@ -28,6 +28,8 @@ _p = (p)=>{
 	//to start one time the particles
 	p.start = function () {
 		p.name.start(true,p.lifetime,null,p.particle_per_frame)	
+		//p.name.x = random(0,800)
+		//p.name.y = random(0,800)
 	}
 	//to repeat the particles
 	p.loop = function () {

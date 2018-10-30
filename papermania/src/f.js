@@ -376,7 +376,12 @@ f.anim_heart_on_winner = (side)=>{
 	//t.score = new _t(tp.score)
 	//t.score.alpha =.7
 
-
+	progress_enemy = progress_enemy +100
+	progress_player = progress_player +100
+	co(typeof(progress_enemy))
+	f.write("progress_0", progress_enemy)
+	f.write("progress_1", progress_player)
+	co(typeof(progress_enemy))
 
 
 
@@ -419,14 +424,14 @@ f.anim_heart_on_winner = (side)=>{
 			co("anim winner 0")
 			anim_winner(0)
 			wait( ()=> {d[0]=true},time)
-			wait( ()=> {d[0]=false},time*6)
+			wait( ()=> {d[0]=false},time*9)
 
 		}
 		if (side == 1){
 			co("anim winner 1")
 			anim_winner(1)
 			wait( ()=> {d[1]=true},time)
-			wait( ()=> {d[1]=false},time*6)
+			wait( ()=> {d[1]=false},time*9)
 
 		}
 		wait(()=>{f.write("score_0", interface.points[0].text)},time*6)

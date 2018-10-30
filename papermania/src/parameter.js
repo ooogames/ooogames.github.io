@@ -73,6 +73,9 @@ var d={
 	},
 	0:false,
 	1:false,
+	//pour lancer les progressions de la progress bar, doit être différent de 0 et 1 car sinon anim_score est lié
+	enemy:false,
+	player:false,
 	show_button_restart:false,
 };
 
@@ -150,6 +153,7 @@ var numero = {
 //difficulté du joueur plus la valeur est basse plus fort le joueur est
 var ex ;  
 var difficulty
-
+var progress_player; //valeur toujours inférieure à 300  
+var progress_enemy; //valeur toujours inférieure à 300  
 
 

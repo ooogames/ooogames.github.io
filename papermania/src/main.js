@@ -4,8 +4,6 @@
 
 // 	faire un spritesheet des papiers suivant le rang
 
-// 	empêcher les flash suites aux pression de clic
-
 // 	animer la progress bar lorsqu'on marque des points
 
 //  	répartir les papiers gagnés dans le rank
@@ -149,6 +147,7 @@ var game_first_screen = {
 		if(progress_length < 300){
 			o.progress.drawRoundedRect(0,0,progress_length,27,10);
 		}
+
 	},
 };
 
@@ -259,13 +258,28 @@ var game_main = {
 		create_sounds(game)
 		wait(() => { e.arrow(game) }, 3000)
 
+		//lance la progression des joueurs au démarrer pour indiquer leur niveau respectifs
+		let time_begin =4000
+		let time_end =8000
+		//pour lancer la progression au début 
+		f.launch_progress = (side)=>{
+			wait(()=>{side=true},time_begin)
+			wait(()=>{side=false},time_end)
+		}
+		f.launch_progress(d.player)
+		f.launch_progress(d.enemy)
 
 		// pour éviter de mettre ceci dans update et gagner de la ressource
 		f.pseudo_update=()=>{
 			if(flag.start_game){
 				//anim le score en fonction du drapeau
-				d[0] && f.anim_score(0)
-				d[1] && f.anim_score(1)
+				d[0] && f.anim_score(0) 
+				//anime la barre de progression en fonction de la progression 
+				d.enemy && interface.progress[0].anim(progress_enemy)
+				d[1] && f.anim_score(1) 
+				d[1] && interface.progress[1].anim(progress_player) 
+				//anime la barre de progression en fonction de la progression 
+				d.player && interface.progress[1].anim(progress_player)
 
 				// pointer qui suit le mouvement
 				f.follow_pointer(o.click)
@@ -321,9 +335,6 @@ var game_main = {
 
 			// vérifie si on peut cliquer pour arrêter le papier
 			f.check_pre_sensor()
-
-			//pour animer la progress bar avec 200 points soit 200 de 300 de width
-			interface.progress[0].anim(50)
 
 
 			let cond = game.input.activePointer.duration > 500 && o.paper[1].flag_pre_sensor == true && o.paper[1].flag_test_duration == false && o.paper[1].flag == false
