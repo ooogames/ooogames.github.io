@@ -375,29 +375,20 @@ f.anim_heart_on_winner = (side)=>{
 
 	//t.score = new _t(tp.score)
 	//t.score.alpha =.7
-
-	progress_enemy = progress_enemy +100
-	progress_player = progress_player +100
-	co(typeof(progress_enemy))
-	f.write("progress_0", progress_enemy)
-	f.write("progress_1", progress_player)
-	co(typeof(progress_enemy))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	//anim le score et passe au level supérieur dès que le point est marqué
+	f.levelup=(levelup)=>{
+		let frame_side=interface.puissance[side].frame
+		progress[side] = progress[side] +100
+		if (progress[side] > 300){
+			progress[side] = 0 
+			//TODO : 
+			//ici mettre une animation décalée pour les frames avec des explosions
+			interface.puissance[side].frame=frame_side+1
+			interface.roll[side].frame=frame_side+1
+		}
+	}
+	f.levelup(co)
+	f.write_data_player()
 
 	//TODO : animer la progression des points 
 
@@ -424,23 +415,19 @@ f.anim_heart_on_winner = (side)=>{
 			co("anim winner 0")
 			anim_winner(0)
 			wait( ()=> {d[0]=true},time)
-			wait( ()=> {d[0]=false},time*9)
-
+			wait( ()=> {d[0]=false},time*15)
 		}
 		if (side == 1){
 			co("anim winner 1")
 			anim_winner(1)
 			wait( ()=> {d[1]=true},time)
-			wait( ()=> {d[1]=false},time*9)
-
+			wait( ()=> {d[1]=false},time*15)
 		}
 		wait(()=>{f.write("score_0", interface.points[0].text)},time*6)
 		wait(()=>{f.write("score_1", interface.points[1].text)},time*6)
 	}
-
-
-
 }
+
 // faire appaitre le fil pour annoncer le score
 f.show_points = (obj) => {
 	obj.fil.body.moves = true

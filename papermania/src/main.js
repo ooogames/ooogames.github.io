@@ -275,9 +275,9 @@ var game_main = {
 				//anim le score en fonction du drapeau
 				d[0] && f.anim_score(0) 
 				//anime la barre de progression en fonction de la progression 
-				d.enemy && interface.progress[0].anim(progress_enemy)
+				d.enemy && interface.progress[0].anim(progress[0])
 				d[1] && f.anim_score(1) 
-				d[1] && interface.progress[1].anim(progress_player) 
+				d[1] && interface.progress[1].anim(progress[1]) 
 				//anime la barre de progression en fonction de la progression 
 				d.player && interface.progress[1].anim(progress_player)
 

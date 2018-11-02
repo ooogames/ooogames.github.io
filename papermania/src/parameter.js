@@ -153,7 +153,10 @@ var numero = {
 //difficulté du joueur plus la valeur est basse plus fort le joueur est
 var ex ;  
 var difficulty
-var progress_player; //valeur toujours inférieure à 300  
-var progress_enemy; //valeur toujours inférieure à 300  
+//utilisé pour la barre de progression => valeur toujours inférieur à 300
+var progress={
+	0:0,
+	1:0,
+}
 
 

@@ -959,24 +959,22 @@ si et seulement si le nombre de transition est atteint
 	interface.progress[0].main.scale.y = 0
 	interface.progress[0].bg.scale.y = 0
 	interface.puissance[0].scale.y = 0
-	//ici on spécifie la puissance de l'enemy
-	interface.roll[0].frame=3
 
 	//si local storage est nul on définit la valeur par défaut sinon on renseigne celle stockée pour la progression
 	//attention on doit spécifier parseInt sinon la valeur retournée est une string
-	f.specify_progress=(string,variable)=>{
-		variable = f.open(string) != null ? parseInt(f.open(string)) : 0
-		//ensuite on l'écrit
-		f.write(variable,string)
+
+	progress[1] = f.open("progress_1") != null ? parseInt(f.open("progress_1")) : 0
+	interface.puissance[1].frame = f.open("puissance_1") != null ? parseInt(f.open("puissance_1")) : 0
+	interface.roll[1].frame = f.open("roll_1") != null ? parseInt(f.open("roll_1")) : 0
+
+	//on écrit le score du player, l'enemy on s'en fout
+	f.write_data_player=()=>{
+		f.write("progress_1", progress[1])
+		f.write("puissance_1",interface.puissance[1].frame)
+		f.write("roll_1",interface.roll[1].frame)
 	}
-	//appel des fonctions pour les deux joeurs
-	f.specify_progress("progress_0",progress_enemy)
-	//f.specify_progress("progress_1",progress_player)
-
-	progress_player = f.open("progress_1") != null ? parseInt(f.open("progress_1")) : 0
 	//ensuite on l'écrit
-	f.write(progress_player,"progress_1")
-
+	f.write_data_player()
 
 	//définition des scores respectifs
 	//TODO : mettre le score pour le joeur
@@ -1240,7 +1238,6 @@ si et seulement si le nombre de transition est atteint
 
 	interface.restart = new _b(interface.restart_p)
 	game.add.tween(interface.restart.scale).to({x:1.2,y:1.2},800,Phaser.Easing.Linear.None,true,0,-1,true);
-
 
 
 }
