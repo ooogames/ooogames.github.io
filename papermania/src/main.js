@@ -1,16 +1,6 @@
 //set foldmethod = syntax zM zi
 //  	le boutton restart apparait trop vite, il doit apparaître après un certain délai + son roulement de tambour pour désigner le vainqueur
-
-// 	papiers sur écran scores
-
-// 	faire un spritesheet des papiers suivant le rang
-
-// 	animer la progress bar lorsqu'on marque des points
-
 //  	répartir les papiers gagnés dans le rank
-
-
-
 
 var stars;
 
@@ -179,8 +169,6 @@ var rank_screen = {
 
 		for (var i = 0; i < 500; i++)
 		{
-
-			//o.rolls = new _obj(op.rolls)
 			o.rolls = game.add.sprite(random(50,w-50),random(400,h),'roll_rank') 
 			o.rolls.scale.x=4
 			o.rolls.scale.y=4
@@ -207,9 +195,6 @@ var rank_screen = {
 				moves:false,
 			}
 			o.collision = new _obj(op.collision)
-			//o.collision.body.immovable=true
-
-
 		}
 
 	},
@@ -247,16 +232,14 @@ function create_sounds(game){
 var game_main = {
 	create: function () {
 		music.stop()
-		//game.time.advancedTiming = true;
-		//game.time.desiredFps = 30;
 		grow.flag=false
 		this.game.stage.backgroundColor = '#ffe063';
 		scroll = game.add.audio("scroll")
 		scroll.flag =false
 		h=game.height
-		//scale the sprites to the screen
 		game.physics.arcade.gravity.y = 3000;
 		f.start_game()
+		//scale the sprites to the screen
 		scale_assets_to_screen()
 		create_sounds(game)
 		wait(() => { e.arrow(game) }, 3000)
@@ -277,8 +260,9 @@ var game_main = {
 			if(flag.start_game){
 				//anim le score en fonction du drapeau
 				d[0] && f.anim_score(0) 
+				//met une barre de progression aléatoire pour l'enemy
+				interface.progress[0].anim(random(0,290))
 				//anime la barre de progression en fonction de la progression 
-				d.enemy && interface.progress[0].anim(progress[0])
 				d[1] && f.anim_score(1) 
 				d[1] && interface.progress[1].anim(progress[1]) 
 				//anime la barre de progression en fonction de la progression 
@@ -303,9 +287,6 @@ var game_main = {
 		}
 		// pour éviter de mettre ceci dans update et gagner de la ressource
 		f.loop(15,f.pseudo_update)
-
-
-
 	},
 
 	update: function () {

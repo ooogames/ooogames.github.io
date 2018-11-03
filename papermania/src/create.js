@@ -15,7 +15,6 @@ f.create_game_first_screen = () => {
 	o.background_start = new _obj(op.background_start)
 	o.background_start.scale.y = game.height/2270 
 
-
 	//in op config
 	op.title_game={
 		image: "title_game",
@@ -47,9 +46,6 @@ f.create_game_first_screen = () => {
 	}
 	_a(ap.title_game)
 
-
-
-
 	o.shadow_roll_p = {
 		image: "shadow_roll_bondissant",
 		x: w2,
@@ -79,7 +75,6 @@ f.create_game_first_screen = () => {
 		p.name.onComplete.add(()=>{p.callback()}, this)
 	}
 
-
 	a.roll={
 		o:o.roll,
 		t:280,
@@ -99,15 +94,7 @@ f.create_game_first_screen = () => {
 		y:false,
 	}
 
-
-
-
-
 	f.anim_roll(a.roll)
-
-	//_a(a.roll)
-
-	//a.roll.onComplete.add(()=>{_a(a.roll_next)},this)
 
 	//in op config
 	op.background_button_play={
@@ -137,9 +124,6 @@ f.create_game_first_screen = () => {
 		y:h2*1.40,
 	}
 	o.button_rank = new _b(o.button_rank_p)
-	//o.button_play.scale.x=.95
-	//o.button_play.scale.y=1.05
-
 
 	//in ap config
 	ap.button_play={
@@ -203,7 +187,6 @@ f.create_rank=()=>{
 	}
 	b.button_home = new _b(bp.button_home)
 }
-
 
 f.create_main = () => {
 	//f.start_config_main()
@@ -326,7 +309,6 @@ f.create_main = () => {
 		1: new _obj(o.paper_p1),
 	}
 
-
 	o.paper[0].gameover = false // pour alerter quand il dépasse le milieu de la table
 	o.paper[0].flag_pre_sensor = false
 	o.paper[0].flag_press_engaged = false
@@ -363,7 +345,6 @@ f.create_main = () => {
 		immovable: true,
 	}
 	o.sensor = new _obj(o.sensor_p)
-
 
 	o.pre_sensor_p = {
 		image: "line_collision",
@@ -672,9 +653,6 @@ f.create_main = () => {
 
 	}
 
-
-
-
 	/*
 transition pour le cercle pour montrer l'attente d'un enemy
 première transition
@@ -722,11 +700,7 @@ si et seulement si le nombre de transition est atteint
 			f.launch_animation_searching_opponent(p,n)
 		}
 	}
-	//TODO : 
-	//à remettre
 	f.launch_animation_searching_opponent(ap.searching_opponent,o.searching_opponent.number)
-
-
 
 	// normalement plus nécessaire
 	o.searching_opponent_tw=[]
@@ -745,13 +719,6 @@ si et seulement si le nombre de transition est atteint
 			_transition(o.searching_opponent_tw[i])
 		}
 	}
-
-	//TODO : à rétablir
-	////var loop = function (callback, duration,number) {
-	////loop(f.start_timer_search_opponent,ts*2+ds+7*rs,10)
-	//loop(f.start_timer_search_opponent,ts*2+ds+8*rs,10)
-	////t.appear_opponent=(ts*2+ds+7*rs)*2
-
 
 	o.text_searching_opponent_p = {
 		image: "searching_opponent",
@@ -1024,9 +991,6 @@ si et seulement si le nombre de transition est atteint
 		f.attribute_enemy_fn_player(cat[i],numero[i]);
 	}
 
-	//store the current value of score (enemy and player) for f.anim_score
-
-
 	//on définit la puissance de l'enemy en fonctions des points
 	if (interface.points[0].text > 0 && interface.points[0].text < 1000) {
 		interface.puissance[0].frame=0
@@ -1103,7 +1067,6 @@ si et seulement si le nombre de transition est atteint
 		}
 		o.sensor_opponent[i] = new _obj(o.sensor_opponent_p[i])
 	}
-
 
 	o.cloud = []
 	o.cloud_p = {
@@ -1219,7 +1182,6 @@ si et seulement si le nombre de transition est atteint
 
 	//in ap config
 	ap.flash_blanc={
-
 		0:{
 			o: o.flash_blanc[0],
 			//e: Phaser.Easing.Bounce.In,
@@ -1235,7 +1197,6 @@ si et seulement si le nombre de transition est atteint
 			//sy:1,
 		},
 		1:{
-
 			o: o.flash_blanc[1],
 			//e: Phaser.Easing.Bounce.In,
 			i: 0, //number repeat
@@ -1249,7 +1210,6 @@ si et seulement si le nombre de transition est atteint
 			//sx:1, //scale
 			//sy:1,
 		},
-
 	}
 
 	var restart =()=>{game.state.start("game_main");interface.restart.visible=false}
@@ -1265,6 +1225,4 @@ si et seulement si le nombre de transition est atteint
 
 	interface.restart = new _b(interface.restart_p)
 	game.add.tween(interface.restart.scale).to({x:1.2,y:1.2},800,Phaser.Easing.Linear.None,true,0,-1,true);
-
-
 }

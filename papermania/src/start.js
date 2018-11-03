@@ -7,9 +7,6 @@ f.start_game = () => {
 	//f.random_division(330)
 	co(o.opponent_actions)
 	start_timer("a")
-	//tw.searching_opponent = _tr(o.searching_opponent_tw)
-
-
 	//here all the timer to start the succession of action
 	var ev={//events
 		t:[
@@ -38,25 +35,7 @@ f.start_game = () => {
 	f.start_cloud = () => {
 		for (var i = 0; i < o.searching_opponent.length; i++){
 			// faire disparaitre le timer de recherche de l'enemi
-
-
-
-
-
-
 			o.searching_opponent[i].visible = false
-
-
-
-
-
-
-
-
-
-
-
-
 		}
 		//o.circle_search_opponent.alpha = 0
 		for (let i = 0; i < o.cloud_length; i++) {
@@ -128,16 +107,15 @@ f.start_game = () => {
 			sy:1,
 			sx:1,
 		}
-		//À RÉTABLIR
 		wait(()=>{pop.play()},o.cloud_tw[0].d-70)
 		wait(() => { interface[0].visible = true }, o.cloud_tw[0].d)
 		wait(() => { _tr(tw_appears_enemy) }, o.cloud_tw[0].d)
 
-		wait(() => { interface[0].puissance.visible = true }, o.cloud_tw[0].d)
+		wait(() => { interface.puissance[0].visible = true }, o.cloud_tw[0].d)
 		wait(() => { _tr(tw_appears_expl) }, o.cloud_tw[0].d)
 
 
-		wait(() => { interface[0].explode_circle_under_puissance.visible = true }, o.cloud_tw[0].d)
+		wait(() => { interface.explode_circle_under_puissance[0].visible = true }, o.cloud_tw[0].d)
 		wait(() => { _tr(tw_appears_cirle_under_puissance) }, o.cloud_tw[0].d)
 
 
@@ -146,17 +124,12 @@ f.start_game = () => {
 		wait(() => { interface.points[0].visible = true }, o.cloud_tw[0].d)
 		wait(() => { _tr(tw_appears_points) }, o.cloud_tw[0].d)
 
-		wait(() => { interface.puissance[0].visible = true }, o.cloud_tw[0].d)
-		wait(() => { _tr(tw_appears_puissance) }, o.cloud_tw[0].d)
-
 		wait(() => { interface.progress[0].visible = true }, o.cloud_tw[0].d)
 		//pour que le pointer apparaisse en même temps que l'enemy
 		wait(() => { o.click.visible = true }, o.cloud_tw[0].d)
 		//progress bar de l'enemy
 		wait(() => { _tr(tw_appears_progress_bg) }, o.cloud_tw[0].d)
 		wait(() => { _tr(tw_appears_progress_main) }, o.cloud_tw[0].d)
-
-
 	}
 
 	// compte à rebours pour lancer le jeu
@@ -183,9 +156,7 @@ f.start_game = () => {
 		wait(ready,100)
 		//wait(()=>{interface.decount.visible=false},800)
 	}
-
-
-
+	//animation du pointer
 	tw_click=game.add.tween(o.click.scale).to({ x: .4, y :.4 }, 200, Phaser.Easing.Linear.None, true, 0, -1, true);
 
 	//appel des differents events avec les time_converted spécifique
@@ -197,42 +168,5 @@ f.start_game = () => {
 	wait(()=>{f.wait_start_game(o.paper[0], 0)},ev.tc[2])
 	wait(()=>{f.wait_start_game(o.paper[1], 0)},ev.tc[2])
 	wait(f.input, ev.tc[2])
-	//wait(f.stop_opponent, t.start_game + t.start_opponent)
-	//wait(() => { o.paper[0].body.moves = false; o.paper[0].flag_dont_move = true }, t.start_opponent)
-
-
-
-
-
-
-
-
-
-	//wait(f.check_distance, ev.tc[3])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// pour que le button restart apparaisse après check_distance => ev.tc[4]
-	//wait(()=>{interface.restart.visible=true}, ev.tc[4])
-	//wait(() => { f.show_looser(o.looser_tw_1) }, ev.tc[3])
 	flag.start_game=true
-
-	//animation des papiers vers le joueur gagnant
-	//wait(()=>{f.anim_paper_winner(interface.roll_0.x)},8000)
 }

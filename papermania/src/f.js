@@ -221,7 +221,6 @@ f.pointer_little=(obj,speed)=>{
 	}
 }
 
-
 //lorsqu'on clic 
 //stop tw du curseur
 //lance augmente la taille du curseur après un certain délai (pointer.duration)
@@ -373,14 +372,6 @@ f.anim_heart_on_winner = (side)=>{
 		v:true,
 	}
 	f.explosion=()=>{
-		//this.tw=game.add.tween(interface.explode_circle_under_roll[side].scale).to({x:3,y:3},300,Phaser.Easing.Linear.None,true,0);
-		//this.tw2=game.add.tween(interface.explode_circle_under_roll[side]).to({alpha:1},300,Phaser.Easing.Linear.None,true,0);
-		//this.tw.onComplete.add(()=>{interface.explode_circle_under_roll[side].visible=false})
-
-		//this.tw3=game.add.tween(interface.explode_circle_under_puissance[side].scale).to({x:5,y:5},300,Phaser.Easing.Linear.None,true,700);
-		//this.tw4=game.add.tween(interface.explode_circle_under_puissance[side]).to({alpha:1},300,Phaser.Easing.Linear.None,true,700);
-		//this.tw3.onComplete.add(()=>{interface.explode_circle_under_puissance[side].visible=false})
-
 		this.tw=game.add.tween(interface.explode_circle_under_roll[side].scale).to({x:5,y:5},300,Phaser.Easing.Linear.None,true,0);
 		this.tw2=game.add.tween(interface.explode_circle_under_roll[side]).to({alpha:0},300,Phaser.Easing.Linear.None,true,0);
 		this.tw.onComplete.add(()=>{interface.explode_circle_under_roll[side].visible=false})
@@ -447,7 +438,6 @@ f.anim_heart_on_winner = (side)=>{
 		wait(()=>{f.write("score_1", interface.points[1].text)},time*6)
 	}
 }
-wait(()=>{f.anim_heart_on_winner(1)},5000)
 // faire appaitre le fil pour annoncer le score
 f.show_points = (obj) => {
 	obj.fil.body.moves = true
@@ -608,5 +598,3 @@ f.complex_tween = (p) => {
 	p.name.onComplete.add(()=>{p.callback()}, this)
 	p.name.start()
 }
-
-
