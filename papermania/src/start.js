@@ -87,8 +87,17 @@ f.start_game = () => {
 			sy:1,
 			sx:1,
 		}
-		let tw_appears_puissance={
+
+		let tw_appears_expl={
 			o:interface.puissance[0],
+			t:500,
+			d:0,
+			e:Phaser.Easing.Exponential.Out,
+			sy:1,
+			sx:1,
+		}
+		let tw_appears_cirle_under_puissance={
+			o:interface.explode_circle_under_puissance[0],
 			t:500,
 			d:0,
 			e:Phaser.Easing.Exponential.Out,
@@ -123,6 +132,14 @@ f.start_game = () => {
 		wait(()=>{pop.play()},o.cloud_tw[0].d-70)
 		wait(() => { interface[0].visible = true }, o.cloud_tw[0].d)
 		wait(() => { _tr(tw_appears_enemy) }, o.cloud_tw[0].d)
+
+		wait(() => { interface[0].puissance.visible = true }, o.cloud_tw[0].d)
+		wait(() => { _tr(tw_appears_expl) }, o.cloud_tw[0].d)
+
+
+		wait(() => { interface[0].explode_circle_under_puissance.visible = true }, o.cloud_tw[0].d)
+		wait(() => { _tr(tw_appears_cirle_under_puissance) }, o.cloud_tw[0].d)
+
 
 		wait(() => { interface.roll[0].visible = true }, o.cloud_tw[0].d)
 		wait(() => { _tr(tw_appears_roll) }, o.cloud_tw[0].d)

@@ -746,26 +746,6 @@ si et seulement si le nombre de transition est atteint
 		}
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	//TODO : à rétablir
 	////var loop = function (callback, duration,number) {
 	////loop(f.start_timer_search_opponent,ts*2+ds+7*rs,10)
@@ -818,6 +798,16 @@ si et seulement si le nombre de transition est atteint
 		v:true,
 	}
 
+	//rond qui explose lors du passage à un nouveau roll
+	interface.player_explode_circle_under_roll={
+		image: "circle_pink",
+		x: w2 * 1.1,
+		y: h*.105,
+		a: 1,
+		flag: true,
+		g: game,
+	}
+
 	// papier en desous des points du joueur
 	interface.player_roll_p = {
 		image: "roll",
@@ -839,6 +829,7 @@ si et seulement si le nombre de transition est atteint
 		police: 'police_red',
 		v:true,
 	}
+
 	interface.progress_p0 = {
 		g: game,
 		x:w2*.5,
@@ -871,6 +862,15 @@ si et seulement si le nombre de transition est atteint
 		taille: 100,
 		police: 'police_yellow',
 		v:true,
+	}
+	//rond qui explose lors du passage à un nouveau roll
+	interface.enemy_explode_circle_under_roll={
+		image: "circle_yellow",
+		x: w2 * 145,
+		y: h*.105,
+		a: 1,
+		flag: true,
+		g: game,
 	}
 
 	// papier en desous des points du joueur
@@ -913,6 +913,24 @@ si et seulement si le nombre de transition est atteint
 		police: 'police',
 		v: true,
 	}
+	//rond qui explose lors du passage à un nouveau level/rank
+	interface.player_explode_circle_under_puissance={
+		image: "circle_pink",
+		x: w2*.85+ w2,
+		y: h*.10,
+		a: 1,
+		flag: true,
+		g: game,
+	}
+	//rond qui explose lors du passage à un nouveau level/rank
+	interface.enemy_explode_circle_under_puissance={
+		image: "circle_yellow",
+		x: w2*.85,
+		y: h*.10,
+		a: 1,
+		flag: true,
+		g: game,
+	}
 
 	interface.puissance_p0 = {
 		g: game,
@@ -933,6 +951,10 @@ si et seulement si le nombre de transition est atteint
 	interface = {
 		0: new _t(interface.enemy_p),
 		1: new _t(interface.player_p),
+		explode_circle_under_roll:{
+			0:new _obj(interface.enemy_explode_circle_under_roll),
+			1:new _obj(interface.player_explode_circle_under_roll),
+		},
 		roll:{
 			0:new _obj(interface.enemy_roll_p),
 			1:new _obj(interface.player_roll_p),
@@ -941,6 +963,10 @@ si et seulement si le nombre de transition est atteint
 			0:new _t(interface.enemy_points_p),
 			1:new _t(interface.player_points_p),
 
+		},
+		explode_circle_under_puissance:{
+			0:new _obj(interface.enemy_explode_circle_under_puissance),
+			1:new _obj(interface.player_explode_circle_under_puissance),
 		},
 		puissance:{
 			0:new _obj(interface.puissance_p0),
@@ -959,6 +985,7 @@ si et seulement si le nombre de transition est atteint
 	interface.progress[0].main.scale.y = 0
 	interface.progress[0].bg.scale.y = 0
 	interface.puissance[0].scale.y = 0
+	interface.explode_circle_under_puissance[0].scale.y = 0
 
 	//si local storage est nul on définit la valeur par défaut sinon on renseigne celle stockée pour la progression
 	//attention on doit spécifier parseInt sinon la valeur retournée est une string

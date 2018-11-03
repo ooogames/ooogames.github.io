@@ -1,3 +1,4 @@
+//set foldmethod = syntax zM zi
 //  	le boutton restart apparait trop vite, il doit apparaître après un certain délai + son roulement de tambour pour désigner le vainqueur
 
 // 	papiers sur écran scores
@@ -45,6 +46,8 @@ var preloader = {
 		//loadingBar.anchor.setTo(0.5,0.5);
 		//this.load.setPreloadSprite(loadingBar);
 		//tuto
+		this.game.load.image("circle_pink", "assets/circle_pink.png");
+		this.game.load.image("circle_yellow", "assets/circle_yellow.png");
 		this.game.load.image("rank", "assets/rank.png");
 		this.game.load.image("roll_rank", "assets/roll_rank.png");
 		this.game.load.image("background_start", "assets/background_start.png");

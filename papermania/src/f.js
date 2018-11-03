@@ -372,22 +372,42 @@ f.anim_heart_on_winner = (side)=>{
 		police: 'police_red',
 		v:true,
 	}
+	f.explosion=()=>{
+		//this.tw=game.add.tween(interface.explode_circle_under_roll[side].scale).to({x:3,y:3},300,Phaser.Easing.Linear.None,true,0);
+		//this.tw2=game.add.tween(interface.explode_circle_under_roll[side]).to({alpha:1},300,Phaser.Easing.Linear.None,true,0);
+		//this.tw.onComplete.add(()=>{interface.explode_circle_under_roll[side].visible=false})
 
-	//t.score = new _t(tp.score)
-	//t.score.alpha =.7
+		//this.tw3=game.add.tween(interface.explode_circle_under_puissance[side].scale).to({x:5,y:5},300,Phaser.Easing.Linear.None,true,700);
+		//this.tw4=game.add.tween(interface.explode_circle_under_puissance[side]).to({alpha:1},300,Phaser.Easing.Linear.None,true,700);
+		//this.tw3.onComplete.add(()=>{interface.explode_circle_under_puissance[side].visible=false})
+
+		this.tw=game.add.tween(interface.explode_circle_under_roll[side].scale).to({x:5,y:5},300,Phaser.Easing.Linear.None,true,0);
+		this.tw2=game.add.tween(interface.explode_circle_under_roll[side]).to({alpha:0},300,Phaser.Easing.Linear.None,true,0);
+		this.tw.onComplete.add(()=>{interface.explode_circle_under_roll[side].visible=false})
+
+		this.tw3=game.add.tween(interface.explode_circle_under_puissance[side].scale).to({x:6,y:6},300,Phaser.Easing.Linear.None,true,700);
+		this.tw4=game.add.tween(interface.explode_circle_under_puissance[side]).to({alpha:0},300,Phaser.Easing.Linear.None,true,700);
+		this.tw3.onComplete.add(()=>{interface.explode_circle_under_puissance[side].visible=false})
+	}
+
 	//anim le score et passe au level supérieur dès que le point est marqué
-	f.levelup=(levelup)=>{
+	f.levelup=()=>{
 		let frame_side=interface.puissance[side].frame
 		progress[side] = progress[side] +100
 		if (progress[side] > 300){
 			progress[side] = 0 
 			//TODO : 
 			//ici mettre une animation décalée pour les frames avec des explosions
+
+			f.explosion();
+
+
 			interface.puissance[side].frame=frame_side+1
 			interface.roll[side].frame=frame_side+1
 		}
 	}
-	f.levelup(co)
+	//f.explosion();
+	f.levelup()
 	f.write_data_player()
 
 	//TODO : animer la progression des points 
@@ -427,7 +447,7 @@ f.anim_heart_on_winner = (side)=>{
 		wait(()=>{f.write("score_1", interface.points[1].text)},time*6)
 	}
 }
-
+wait(()=>{f.anim_heart_on_winner(1)},5000)
 // faire appaitre le fil pour annoncer le score
 f.show_points = (obj) => {
 	obj.fil.body.moves = true
